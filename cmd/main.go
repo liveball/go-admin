@@ -11,8 +11,6 @@ import (
 	"go-admin/http"
 )
 
-//go run main.go -conf mainsite.toml
-
 func main() {
 	flag.Parse()
 	if err := conf.Init(); err != nil {
