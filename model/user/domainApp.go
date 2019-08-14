@@ -1,4 +1,4 @@
-package users
+package adminm
 
 import "time"
 
@@ -7,10 +7,10 @@ Id 用Did和Aid计算出来一个值，然后代表当前唯一id,这样方便�
 
 */
 type DomainApp struct {
-	Id     string    `json:"id" xorm:"varchar(64) notnull unique 'id'"`
-	Name   string    `json:"name" xorm:"varchar(256) notnull unique 'name'"`
-	Did    string    `json:"did" xorm:"varchar(64) notnull unique 'did'"`
-	Status int       `json:"status" xorm:"default 1"`
-	CTime  time.Time `json:"ctime" xorm:"created"`
-	MTime  time.Time `json:"mtime" xorm:"updated" `
+	ID     int64
+	Name   string    `json:"name"`
+	Did    string    `json:"did" `
+	Status int       `json:"status" `
+	CTime  time.Time `json:"ctime" `
+	MTime  time.Time `json:"mtime" `
 }
