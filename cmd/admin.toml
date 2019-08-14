@@ -1,10 +1,9 @@
 
 [http]
-    addr = "0.0.0.0:8080"
-
+    addr = "127.0.0.1:8080"
 
 [orm]
-    dsn = "root:abc123456@tcp(58.87.64.219:3306)/test?timeout=5s&readTimeout=5s&writeTimeout=5s&parseTime=true&loc=Local&charset=utf8,utf8mb4"
+    dsn = "root:fpf@tcp(127.0.0.1:3306)/test?timeout=5s&readTimeout=5s&writeTimeout=5s&parseTime=true&loc=Local&charset=utf8,utf8mb4"
     active = 5
     idle = 5
     idleTimeout = "4h"

@@ -3,17 +3,18 @@ package lib
 import (
 	"log"
 	"strings"
-	"time"
 
 	"github.com/jinzhu/gorm"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 // Config mysql config.
 type Config struct {
-	DSN         string         // data source name.
-	Active      int            // pool
-	Idle        int            // pool
-	IdleTimeout time.Duration // connect max life time.
+	DSN         string // data source name.
+	Active      int    // pool
+	Idle        int    // pool
+	IdleTimeout string // connect max life time.
 }
 
 type ormLog struct{}
@@ -21,7 +22,6 @@ type ormLog struct{}
 func (l ormLog) Print(v ...interface{}) {
 	log.Printf(strings.Repeat("%v ", len(v)), v...)
 }
-
 
 // NewMySQL new db and retry connection when has error.
 func NewMySQL(c *Config) (db *gorm.DB) {
@@ -32,7 +32,7 @@ func NewMySQL(c *Config) (db *gorm.DB) {
 	}
 	db.DB().SetMaxIdleConns(c.Idle)
 	db.DB().SetMaxOpenConns(c.Active)
-	db.DB().SetConnMaxLifetime(time.Duration(c.IdleTimeout))
+	//db.DB().SetConnMaxLifetime(time.Duration(c.IdleTimeout))
 	db.SetLogger(ormLog{})
 	return
 }

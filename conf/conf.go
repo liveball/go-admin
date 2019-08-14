@@ -2,6 +2,7 @@ package conf
 
 import (
 	"flag"
+	"log"
 
 	"github.com/BurntSushi/toml"
 	"go-admin/lib"
@@ -27,11 +28,14 @@ type HTTP struct {
 }
 
 func init() {
-	flag.StringVar(&ConfPath, "conf", "/media/xiaohan/mk/code/go_code/src/github.com/yangjian/mainsite/cmd/mainsite.toml", "default config path")
+	flag.StringVar(&ConfPath, "conf", "./cmd/mainsite.toml", "default config path")
 }
 
 // Init conf.
 func Init() (err error) {
 	_, err = toml.DecodeFile(ConfPath, &Conf)
+	if err!=nil{
+		log.Fatalf("Init toml.DecodeFile error(%v)", err)
+	}
 	return
 }
