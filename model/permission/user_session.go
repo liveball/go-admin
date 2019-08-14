@@ -1,4 +1,4 @@
-package adminm
+package permission
 
 /**
 user session 用户session时长

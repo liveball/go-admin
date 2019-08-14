@@ -1,4 +1,4 @@
-package adminm
+package permission
 
 import "time"
 

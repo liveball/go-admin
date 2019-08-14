@@ -1,21 +1,21 @@
-package user
+package permission
 
 import (
-	"github.com/yangjian/mainsite/conf"
-	"github.com/yangjian/mainsite/dao/user"
+	"go-admin/conf"
+	"go-admin/dao/permission"
 )
 
 //Service struct
 type Service struct {
-	c    *conf.Config
-	user *user.Dao
+	c   *conf.Config
+	per *permission.Dao
 }
 
 //New get service
 func New(c *conf.Config) *Service {
 	s := &Service{
-		c:    c,
-		user: user.New(c),
+		c:   c,
+		per: permission.New(c),
 	}
 
 	return s
@@ -23,5 +23,5 @@ func New(c *conf.Config) *Service {
 
 //Close close db...
 func (s *Service) Close() {
-	//
+	s.per.Close()
 }

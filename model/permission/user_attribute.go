@@ -1,4 +1,4 @@
-package adminm
+package permission
 
 /**
 用户属性,abac

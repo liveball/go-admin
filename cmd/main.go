@@ -4,11 +4,11 @@ import (
 	"flag"
 	"os"
 	"os/signal"
+	"log"
 	"syscall"
 
-	"github.com/yangjian/lib/log"
-	"github.com/yangjian/mainsite/conf"
-	"github.com/yangjian/mainsite/http"
+	"go-admin/conf"
+	"go-admin/http"
 )
 
 //go run main.go -conf mainsite.toml
@@ -19,9 +19,6 @@ func main() {
 		panic(err)
 	}
 
-	//log init
-	log.Init()
-
 	//http init
 	http.Init(conf.Conf)
 
@@ -29,7 +26,7 @@ func main() {
 	signal.Notify(c, syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGSTOP, syscall.SIGINT, syscall.SIGHUP)
 	for {
 		sg := <-c
-		log.Infof("main exit by signal(%s)\n", sg.String())
+		log.Printf("main exit by signal(%s)\n", sg.String())
 		switch sg {
 		case syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGSTOP, syscall.SIGINT:
 			http.Close()

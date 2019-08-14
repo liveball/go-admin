@@ -1,24 +1,26 @@
 package http
 
 import (
-	"github.com/yangjian/mainsite/conf"
-	"github.com/yangjian/mainsite/service/user"
-
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
+	"go-admin/conf"
+	"go-admin/service/permission"
 )
 
 var (
 	err error
-	g   = gin.New()
 	// r   = gin.Default()// use Logger(), Recovery()
-	userSvc *user.Service
+
+	g   = gin.New()
+	perSvc *permission.Service
 )
 
 //Init for service router init.
 func Init(c *conf.Config) {
 	pprof.Register(g)
-	userSvc = user.New(c)
+
+	perSvc = permission.New(c)
+
 	route(c)
 }
 
@@ -31,10 +33,11 @@ func route(c *conf.Config) {
 		t.GET("/long_sync", longSync)   //2. 同步
 	}
 
-	u := g.Group("/x/web")
+	u := g.Group("/x/admin")
 	{
-		u.GET("/users", users)
-		u.GET("/rpc/users", usersByRPC)
+		u.POST("/user/add", addUser)
+		//u.POST("/user/edit", addEdit)
+
 	}
 
 	if err := g.Run(c.HTTP.Addr); err != nil {
@@ -45,5 +48,5 @@ func route(c *conf.Config) {
 //Close close conn resource
 func Close() {
 	//close some source //mysql redis..
-	userSvc.Close()
+	perSvc.Close()
 }

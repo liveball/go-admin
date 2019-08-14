@@ -4,9 +4,7 @@ import (
 	"flag"
 
 	"github.com/BurntSushi/toml"
-	"github.com/yangjian/lib/database/mysql"
-	"github.com/yangjian/lib/grpc"
-	"github.com/yangjian/lib/kafka"
+	"go-admin/lib"
 )
 
 // Conf info.
@@ -19,22 +17,13 @@ var (
 type Config struct {
 	// http
 	HTTP *HTTP
-	// db
-	DB *DB
-	//kafka
-	Kafka        *kafka.Config
-	ClientConfig *grpc.ClientConfig
+	// orm
+	ORM *lib.Config
 }
 
 // HTTP conf.
 type HTTP struct {
 	Addr string
-}
-
-// DB conf.
-type DB struct {
-	// yangjian
-	Yangjian *mysql.Config
 }
 
 func init() {
