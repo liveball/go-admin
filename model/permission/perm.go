@@ -11,21 +11,21 @@ api 分 读 写
 */
 
 type Menu struct {
-	Id         string    `json:"id" xorm:"varchar(64) notnull unique 'id'"` //主键id
-	Category   int       `json:"category"`                                  //类型  1为目录 2为api
-	Name       string    `json:"name"`                                      //名称
-	Icon       string    `json:"icon"`                                      //目录的icon
-	ParentId   string    `json:"parent_id"`                                 //父id
-	ParentPath string    `json:"parent_path"`                               //父路径
-	Sort       int       `json:"sort"`                                      //子菜单排序
-	Hidden     int       `json:"hidden"`                                    //是否展示
-	Status     int       `json:"status" xorm:"default -1"`
-	CTime      time.Time `json:"ctime" xorm:"created"`
-	MTime      time.Time `json:"mtime" xorm:"updated"`
-	Action     Actions   `json:"action"`
-	Source     Sources   `json:"source"`
-	Did        string    `json:"did" xorm:"varchar(64) 'did'"` //冗余字段，为了查询方便
-	Aid        string    `json:"adi" xorm:"varchar(64) 'aid'"`
+	Id         string    `gorm:"column:id" form:"id" json:"id"`                            //主键id
+	Category   int       `gorm:"column:category" form:"category" json:"category"`          //类型  1为目录 2为api
+	Name       string    `gorm:"column:name" form:"name" json:"name"`                      //名称
+	Icon       string    `gorm:"column:icon" form:"icon" json:"icon"`                      //目录的icon
+	ParentId   string    `gorm:"column:parent_id" form:"parent_id" json:"parent_id"`       //父id
+	ParentPath string    `gorm:"column:parent_path" form:"parent_path" json:"parent_path"` //父路径
+	Sort       int       `gorm:"column:sort" form:"sort" json:"sort"`                      //子菜单排序
+	Hidden     int       `gorm:"column:hidden" form:"hidden" json:"hidden"`                //是否展示
+	Status     int       `gorm:"column:status" form:"status" json:"status"`
+	CTime      time.Time `gorm:"column:ctime" form:"ctime" json:"ctime"`
+	MTime      time.Time `gorm:"column:mtime" form:"mtime" json:"name"`
+	Action     Actions   `gorm:"column:action" form:"action" json:"action"`
+	Source     Sources   `gorm:"column:source" form:"source" json:"source"`
+	Did        string    `gorm:"column:did" form:"did" json:"did"` //冗余字段，为了查询方便
+	Aid        string    `gorm:"column:aid" form:"aid" json:"aid"`
 }
 
 type Actions []*Action
@@ -33,24 +33,24 @@ type Sources []*Source
 
 //菜单动作对象 id和上面的id是同一个id
 type Action struct {
-	Id    int64     `json:"id"`
-	Mid   string    `json:"id" xorm:"varchar(64) notnull  'mid'"`    //权限id
-	Code  string    `json:"code" xorm:"varchar(64) notnull  'code'"` //动作编号
-	Name  string    `json:"name"`                                    //名称
-	CTime time.Time `json:"ctime" xorm:"created"`
-	MTime time.Time `json:"mtime" xorm:"updated"`
+	Id    int64     `gorm:"column:id" form:"id" json:"id"`
+	Mid   string    `gorm:"column:mid" form:"mid" json:"mid"`    //权限id
+	Code  string    `gorm:"column:code" form:"code" json:"code"` //动作编号
+	Name  string    `gorm:"column:name" form:"name" json:"name"` //名称
+	CTime time.Time `gorm:"column:ctime" form:"ctime" json:"ctime"`
+	MTime time.Time `gorm:"column:mtime" form:"mtime" json:"mtime"`
 }
 
 //菜单资源对象
 type Source struct {
-	Id     int64     `json:"id"`
-	Mid    string    `json:"pid" xorm:"varchar(64) notnull  'mid'"`   //权限id
-	Code   string    `json:"code" xorm:"varchar(64) notnull  'code'"` //资源编号
-	Name   string    `json:"name"`                                    //名称
-	Method string    `json:"method"`                                  //请求方式
-	Uri    string    `json:"uri"`                                     //请求uri
-	CTime  time.Time `json:"ctime" xorm:"created"`
-	MTime  time.Time `json:"mtime" xorm:"updated"`
+	Id     int64     `gorm:"column:id" form:"id" json:"id"`
+	Mid    string    `gorm:"column:mid" form:"mid" json:"mid"`          //权限id
+	Code   string    `gorm:"column:code" form:"code" json:"code"`       //资源编号
+	Name   string    `gorm:"column:name" form:"name" json:"name"`       //名称
+	Method string    `gorm:"column:method" form:"method" json:"method"` //请求方式
+	Uri    string    `gorm:"column:uri" form:"uri" json:"uri"`          //请求uri
+	CTime  time.Time `gorm:"column:ctime" form:"ctime" json:"ctime"`
+	MTime  time.Time `gorm:"column:mtime" form:"mtime" json:"mtime"`
 }
 
 /**

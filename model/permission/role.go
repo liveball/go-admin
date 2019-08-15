@@ -10,9 +10,9 @@ role
 
 type Role struct {
 	ID     int64
-	Name   string    `json:"name"  `
-	Status int       `json:"status"  `
-	Rw     int       `json:"rw"  ` //读写标志  1为读 2为写 3可读可写
-	CTime  time.Time `json:"ctime"  `
-	MTime  time.Time `json:"mtime"   `
+	Name   string    `gorm:"column:name" form:"name" json:"name"`
+	Status int       `gorm:"column:status" form:"status" json:"status"`
+	Rw     int       `gorm:"column:rw" form:"rw" json:"rw"` //读写标志  1为读 2为写 3可读可写
+	CTime  time.Time `gorm:"column:ctime" form:"ctime" json:"ctime"`
+	MTime  time.Time `gorm:"column:mtime" form:"mtime" json:"mtime"`
 }

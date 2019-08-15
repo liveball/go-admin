@@ -7,11 +7,11 @@ domain app role关联关系(admin用)
 */
 
 type DomainAppRole struct {
-	ID     int64     `json:"id"`
-	Did    string    `json:"did"`
-	Aid    string    `json:"aid" `
-	Rid    string    `json:"rid"`
-	Status int       `json:"status" `
-	CTime  time.Time `json:"ctime" `
-	MTime  time.Time `json:"mtime" `
+	ID     int64     `gorm:"column:id" form:"id" json:"id"`
+	Did    string    `gorm:"column:did" form:"did" json:"did"`
+	Aid    string    `gorm:"column:aid" form:"aid" json:"aid"`
+	Rid    string    `gorm:"column:rid" form:"rid" json:"rid"`
+	Status int       `gorm:"column:status" form:"status" json:"status"`
+	CTime  time.Time `gorm:"column:ctime" form:"ctime" json:"ctime"`
+	MTime  time.Time `gorm:"column:mtime" form:"mtime" json:"mtime"`
 }

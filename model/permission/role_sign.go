@@ -6,6 +6,6 @@ Role签名token签名表,用于对比权限变化  后台更新权限，对应�
 
 type RoleSign struct {
 	ID   int64
-	Uid  string `json:"uid"`
-	Sign string `json:"sign"`
+	Uid  string `gorm:"column:uid" form:"uid" json:"uid"`
+	Sign string `gorm:"column:sign" form:"sign" json:"sign"`
 }

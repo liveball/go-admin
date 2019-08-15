@@ -6,6 +6,6 @@ package permission
 
 type UserAttr struct {
 	ID   int64
-	Uid  string `json:"uid" `
-	Attr string `json:"attr"` //数据库存json数据
+	Uid  string `gorm:"column:uid" form:"uid" json:"uid"`
+	Attr string `gorm:"column:attr" form:"attr" json:"attr"` //数据库存json数据
 }
