@@ -10,6 +10,7 @@ api 分 读 写
 这个是针对角色的
 */
 
+//Menu .
 type Menu struct {
 	Id         string    `gorm:"column:id" form:"id" json:"id"`                            //主键id
 	Category   int       `gorm:"column:category" form:"category" json:"category"`          //类型  1为目录 2为api
@@ -31,7 +32,7 @@ type Menu struct {
 type Actions []*Action
 type Sources []*Source
 
-//菜单动作对象 id和上面的id是同一个id
+//Action 菜单动作对象 id和上面的id是同一个id
 type Action struct {
 	Id    int64     `gorm:"column:id" form:"id" json:"id"`
 	Mid   string    `gorm:"column:mid" form:"mid" json:"mid"`    //权限id
@@ -41,7 +42,7 @@ type Action struct {
 	MTime time.Time `gorm:"column:mtime" form:"mtime" json:"mtime"`
 }
 
-//菜单资源对象
+//Source 菜单资源对象
 type Source struct {
 	Id     int64     `gorm:"column:id" form:"id" json:"id"`
 	Mid    string    `gorm:"column:mid" form:"mid" json:"mid"`          //权限id

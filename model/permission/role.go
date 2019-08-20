@@ -16,3 +16,20 @@ type Role struct {
 	CTime  time.Time `gorm:"column:ctime" form:"ctime" json:"ctime"`
 	MTime  time.Time `gorm:"column:mtime" form:"mtime" json:"mtime"`
 }
+
+//RolePerms .
+type RolePerms struct {
+	ID     int64
+	Rid    string    `gorm:"column:rid" form:"rid" json:"rid"`
+	Pid    string    `gorm:"column:pid" form:"pid" json:"pid"`
+	Status int       `gorm:"column:status" form:"status" json:"status"`
+	CTime  time.Time `gorm:"column:ctime" form:"ctime" json:"ctime"`
+	MTime  time.Time `gorm:"column:mtime" form:"mtime" json:"mtime"`
+}
+
+//RoleSign Role签名token签名表,用于对比权限变化  后台更新权限，对应更新这个角色的Sign
+type RoleSign struct {
+	ID   int64
+	Uid  string `gorm:"column:uid" form:"uid" json:"uid"`
+	Sign string `gorm:"column:sign" form:"sign" json:"sign"`
+}
